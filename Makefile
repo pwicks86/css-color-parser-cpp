@@ -1,19 +1,14 @@
-CXXFLAGS = -std=c++11 -Wall -Wextra -Wno-unused-parameter
+CXXFLAGS = -std=c++11 -Wall -Wextra -Wpedantic -Weverything -Wno-c++98-compat -Wno-missing-prototypes -Wno-padded -Wno-unused-parameter
 
-BIN      = color
-SRCS     = main.cpp
-SRCS    += csscolorparser.cpp
-OBJS     = $(patsubst %.cpp,%.o,$(SRCS))
+build: test
 
-build: $(BIN)
-
-$(BIN): $(OBJS)
+test: csscolorparser.o test.o
 	$(CXX) $(CXXFLAGS) -o $@ $^
 
 %.o: %.cpp
 	$(CXX) $(CXXFLAGS) -c -o $@ $^
 
 clean:
-	rm -rf  *.o $(BIN)
+	rm -rf *.o test
 
 .PHONY: clean
