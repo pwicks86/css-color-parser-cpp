@@ -30,7 +30,7 @@
 #include <cmath>
 #include <algorithm>
 
-using namespace CSSColorParser;
+namespace CSSColorParser {
 
 // http://www.w3.org/TR/css3-color/
 struct NamedColor { const char *const name; const Color color; };
@@ -116,7 +116,7 @@ const size_t namedColorCount = sizeof (namedColors) / sizeof (NamedColor);
 
 template <typename T>
 uint8_t clamp_css_byte(T i) {  // Clamp to integer 0 .. 255.
-    i = std::round(i);  // Seems to be what Chrome does (vs truncation).
+    i = ::round(i);  // Seems to be what Chrome does (vs truncation).
     return i < 0 ? 0 : i > 255 ? 255 : i;
 }
 
@@ -180,7 +180,7 @@ std::vector<std::string> split(const std::string& s, char delim) {
     return elems;
 }
 
-Color CSSColorParser::parse(const std::string& css_str) {
+Color parse(const std::string& css_str) {
     std::string str = css_str;
 
     // Remove all whitespace, not compliant, but should just be more accepting.
@@ -288,3 +288,5 @@ Color CSSColorParser::parse(const std::string& css_str) {
 
     return {};
 }
+
+} // namespace CSSColorParser
