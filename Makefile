@@ -1,4 +1,4 @@
-CXXFLAGS = -std=c++11 -Wall -Wextra -Wpedantic -Wno-unused-parameter
+CXXFLAGS = -std=c++14 -Wall -Wextra -Wpedantic -Wno-unused-parameter
 
 build: test
 
